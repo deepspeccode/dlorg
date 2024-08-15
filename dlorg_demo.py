@@ -3,6 +3,7 @@ import shutil
 import sys
 import random
 import time
+import argparse
 
 def print_with_ellipsis(message):
     print(message, end='', flush=True)
@@ -28,7 +29,6 @@ def create_dummy_files(dummy_downloads):
         'QIF': ['.qif'],
         'CRDOWNLOAD': ['.crdownload']
     }
-
     for category, extensions in file_types.items():
         for ext in extensions:
             for i in range(random.randint(1, 3)):
@@ -54,15 +54,12 @@ def organize_downloads(downloads_path, main_destination):
         'QIF': ['.qif'],
         'CRDOWNLOAD': ['.crdownload']
     }
-
     print_with_ellipsis("Creating Folders")
-
     for folder in folders:
         folder_path = os.path.join(main_destination, folder)
         os.makedirs(folder_path, exist_ok=True)
-
+    
     print_with_ellipsis("Moving Files")
-
     for item in os.listdir(downloads_path):
         item_path = os.path.join(downloads_path, item)
         if os.path.isfile(item_path):
@@ -74,9 +71,13 @@ def organize_downloads(downloads_path, main_destination):
                     break
 
 if __name__ == "__main__":
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    dummy_downloads = os.path.join(script_dir, "Downloads")
-    dummy_destination = os.path.join(script_dir, "Organized")
+    parser = argparse.ArgumentParser(description="Demo for organizing files from a source directory into categorized folders in a destination directory.")
+    parser.add_argument("-s", "--source", help="Source directory for demo (default: ./Downloads)", default="./Downloads")
+    parser.add_argument("-d", "--destination", help="Destination directory for demo (default: ./Organized)", default="./Organized")
+    args = parser.parse_args()
+
+    dummy_downloads = os.path.abspath(args.source)
+    dummy_destination = os.path.abspath(args.destination)
 
     os.makedirs(dummy_downloads, exist_ok=True)
     
@@ -86,8 +87,7 @@ if __name__ == "__main__":
     print_with_ellipsis("Checking file types")
     
     organize_downloads(dummy_downloads, dummy_destination)
-
-    print("\nDlorg Complete!")
+    print("\nDlorg Demo Complete!")
     print("\nHave a wonderful day!")
     
     print(f"\nYou can now cd into the new folder: {dummy_destination}")

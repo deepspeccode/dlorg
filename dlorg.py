@@ -1,9 +1,17 @@
 import os
 import shutil
 import sys
+import time
+import argparse
+
+def print_with_ellipsis(message):
+    print(message, end='', flush=True)
+    for _ in range(6):
+        time.sleep(0.5)
+        print('.', end='', flush=True)
+    print("Done!")
 
 def organize_downloads(downloads_path, main_destination):
-    # Define folders for different file types
     folders = {
         'PDFs': ['.pdf'],
         'Executables': ['.exe', '.msi'],
@@ -21,43 +29,42 @@ def organize_downloads(downloads_path, main_destination):
         'CRDOWNLOAD': ['.crdownload']
     }
 
-    # Create destination folders
+    print_with_ellipsis("Creating Folders")
     for folder in folders:
         folder_path = os.path.join(main_destination, folder)
         os.makedirs(folder_path, exist_ok=True)
 
-    try:
-        for item in os.listdir(downloads_path):
-            item_path = os.path.join(downloads_path, item)
-            if os.path.isfile(item_path):
-                file_ext = os.path.splitext(item)[1].lower()
-                moved = False
-                for folder, extensions in folders.items():
-                    if file_ext in extensions:
-                        destination = os.path.join(main_destination, folder, item)
-                        shutil.move(item_path, destination)
-                        print(f"Moved {item} to {folder}")
-                        moved = True
-                        break
-                if not moved:
-                    print(f"Unhandled file type: {item}")
-
-    except FileNotFoundError:
-        print(f"Error: The Downloads folder path '{downloads_path}' was not found.")
-        sys.exit(1)
-    except PermissionError:
-        print(f"Error: Permission denied when accessing '{downloads_path}'.")
-        sys.exit(1)
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        sys.exit(1)
+    print_with_ellipsis("Moving Files")
+    for item in os.listdir(downloads_path):
+        item_path = os.path.join(downloads_path, item)
+        if os.path.isfile(item_path):
+            file_ext = os.path.splitext(item)[1].lower()
+            for folder, extensions in folders.items():
+                if file_ext in extensions:
+                    destination = os.path.join(main_destination, folder, item)
+                    shutil.move(item_path, destination)
+                    print(f"Moved {item} to {folder}")
+                    break
 
 if __name__ == "__main__":
-    downloads_path = os.path.expanduser("~/Downloads")
-    main_destination = r"D:\Documents"
+    parser = argparse.ArgumentParser(description="Organize files from a source directory into categorized folders in a destination directory.")
+    parser.add_argument("-s", "--source", help="Source directory to organize (default: ~/Downloads)", default=os.path.expanduser("~/Downloads"))
+    parser.add_argument("-d", "--destination", help="Destination directory for organized files (default: ~/Organized)", default=os.path.expanduser("~/Organized"))
+    args = parser.parse_args()
 
-    print(f"Using Downloads folder: {downloads_path}")
-    print(f"Main destination folder: {main_destination}")
+    downloads_path = args.source
+    main_destination = args.destination
+
+    print(f"Source folder: {downloads_path}")
+    print(f"Destination folder: {main_destination}")
+
+    print_with_ellipsis("Searching Downloads folder")
+    print_with_ellipsis("Checking file types")
 
     organize_downloads(downloads_path, main_destination)
-    print("Downloads folder organization complete!")
+
+    print("\nDlorg Complete!")
+    print("\nHave a wonderful day!")
+    
+    print(f"\nYou can now cd into the new folder: {main_destination}")
+    print("To see the organized files, use 'ls' or 'dir' command in the terminal.")
