@@ -11,6 +11,14 @@
 
 ![dlorg Demo](assets/dlorg_demo.gif)
 
+## 📸 Screenshots
+
+### Main Menu
+![Main Menu](assets/Menu.png)
+
+### Configuration View
+![Configuration View](assets/Config.png)
+
 ## ✨ Features
 
 - 🚀 **Efficient Organization**: Sorts files based on their types into dedicated folders.
@@ -18,6 +26,9 @@
 - 🔍 **Smart Recognition**: Automatically detects file types and places them in appropriate folders.
 - 🛡️ **Safe Operation**: Doesn't delete any files, just moves them to new locations.
 - 🎬 **Demo Mode**: Includes a demonstration mode for testing and presentation purposes.
+- 🎨 **Rich CLI Interface**: Utilizes the Rich library for a colorful and interactive command-line interface.
+- 🖼️ **ASCII Art Logo**: Features a stylish ASCII art logo for a professional look.
+- 📊 **Configuration Management**: Easily view and modify folder configurations through the CLI.
 
 ## 🚀 Quick Start
 
@@ -31,7 +42,12 @@
    cd dlorg
    ```
 
-3. Run the script:
+3. Install the required dependencies:
+   ```
+   pip install rich
+   ```
+
+4. Run the script:
    ```
    python dlorg.py
    ```
@@ -39,11 +55,13 @@
 ## 📋 Requirements
 
 - Python 3.6 or higher
+- Rich library (`pip install rich`)
 
 ## 🛠️ Installation
 
 1. Ensure you have Python 3.6+ installed on your system.
-2. Clone this repository or download the `dlorg.py` and `dlorg_demo.py` scripts.
+2. Clone this repository or download the `dlorg.py` script.
+3. Install the Rich library: `pip install rich`
 
 ## 🖥️ Usage
 
@@ -65,21 +83,17 @@ You can specify custom source and destination paths:
 python dlorg.py -s "/path/to/source" -d "/path/to/destination"
 ```
 
-### Demo Mode
+### Interactive Menu
 
-To run the script in demo mode (for testing or presentation):
+The script now features an interactive menu with the following options:
 
-```
-python dlorg_demo.py
-```
-
-This will create dummy files in a "Downloads" folder and demonstrate the organization process without affecting your actual files.
-
-You can also specify custom paths for the demo:
-
-```
-python dlorg_demo.py -s "./DemoDownloads" -d "./DemoOrganized"
-```
+1. Organize files
+2. View current configuration
+3. Add new folder
+4. Remove folder
+5. Add file extension to folder
+6. Remove file extension from folder
+7. Exit
 
 ## 📁 Folder Structure
 
@@ -107,12 +121,12 @@ Organized/
 
 You can easily customize the script to fit your needs:
 
-- Add new file types by editing the `folders` dictionary in the script.
-- Modify the organization logic in the `organize_downloads` function.
+- Use the interactive menu to add, remove, or modify folder configurations.
+- The configuration is automatically saved to a JSON file for persistence.
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/yourusername/dlorg/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/deepspeccode/dlorg/issues).
 
 ## 📜 License
 
@@ -122,9 +136,10 @@ This project is [MIT](https://opensource.org/licenses/MIT) licensed.
 
 - Thanks to all the open-source projects that inspired this tool.
 - Special thanks to the Python community for their invaluable resources.
+- The Rich library for providing beautiful CLI interfaces.
 
 ---
 
 <p align="center">
-  Made with ❤️ by [Your Name]
+  Made with ❤️ by DeepSpecCode
 </p>

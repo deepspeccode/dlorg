@@ -1,0 +1,65 @@
+{
+    "PDFs": [
+        ".pdf"
+    ],
+    "Executables": [
+        ".exe",
+        ".msi"
+    ],
+    "Images": [
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".bmp"
+    ],
+    "ZipFiles": [
+        ".zip",
+        ".rar",
+        ".7z"
+    ],
+    "Documents": [
+        ".doc",
+        ".docx",
+        ".txt",
+        ".rtf",
+        ".md"
+    ],
+    "Spreadsheets": [
+        ".xls",
+        ".xlsx",
+        ".csv"
+    ],
+    "Audio": [
+        ".mp3",
+        ".wav",
+        ".aac",
+        ".flac"
+    ],
+    "Video": [
+        ".mp4",
+        ".avi",
+        ".mkv",
+        ".mov"
+    ],
+    "HTML": [
+        ".html",
+        ".htm"
+    ],
+    "DiscImages": [
+        ".iso",
+        ".img"
+    ],
+    "PHP": [
+        ".php"
+    ],
+    "JSON": [
+        ".json"
+    ],
+    "QIF": [
+        ".qif"
+    ],
+    "CRDOWNLOAD": [
+        ".crdownload"
+    ]
+}
